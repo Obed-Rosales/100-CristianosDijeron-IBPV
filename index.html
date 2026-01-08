@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Cristianos Dijeron - Panel de Control</title>
+    <link rel="stylesheet" href="css/control.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 100 Cristianos Dijeron - Control</h1>
+            <button id="openBoard" class="btn-primary">Abrir Tablero</button>
+        </header>
+
+        <!-- Selección de Pregunta -->
+        <section class="question-section">
+            <h2>❓ Seleccionar Pregunta</h2>
+            <div class="search-area">
+                <input type="text" id="searchQuestion" placeholder="Buscar pregunta...">
+                <button id="searchBtn" class="btn-secondary">🔍 Buscar</button>
+            </div>
+            <select id="questionSelect" size="8">
+                <option value="">-- Carga preguntas primero --</option>
+            </select>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="loadQuestion" class="btn-primary" style="flex: 1;">Cargar Pregunta al Tablero</button>
+                <button id="resetUsedQuestions" class="btn-secondary" onclick="resetUsedQuestions()" title="Limpiar historial de preguntas usadas">🔄 Reiniciar Historial</button>
+            </div>
+        </section>
+
+        <!-- Control de Respuestas -->
+        <section class="answers-section">
+            <h2>✅ Control de Respuestas</h2>
+            <div class="search-answer">
+                <input type="text" id="searchAnswer" placeholder="Buscar respuesta (palabras clave)...">
+                <button id="searchAnswerBtn" class="btn-secondary">🔍 Buscar</button>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+            <div id="answersControl" class="answers-grid">
+                <p>Carga una pregunta para ver las respuestas</p>
+            </div>
+            <div class="controls-grid">
+
+                <!-- Botón Siguiente Ronda -->
+                <button class="btn-primary next-round-btn" style="margin-top: 10px;" onclick="nextRound()">➡️ Siguiente Ronda</button>
+                
+                <!-- Control de Multiplicador -->
+                <div style="margin-top: 20px;">
+                    <label for="multiplierInput" style="font-weight: 600; margin-right: 10px;">Multiplicador:</label>
+                    <input type="number" id="multiplierInput" value="1" min="1" max="5" style="width: 80px; padding: 8px;">
+                    <button class="btn-secondary btn-update" onclick="updateMultiplier()">Actualizar</button>
+                    <button class="btn-error" onclick="showXOverlay()" style="margin-left: 10px; font-size: 20px; font-weight: bold;">❌ Error grande</button>
+                </div>
+
+            </div>
+            
+        </section>
+
+        <!-- Control de Equipos -->
+        <section class="teams-section">
+            <div class="team">
+                <h3>Equipo 1</h3>
+                <input type="text" id="team1Name" placeholder="Nombre del Equipo 1" value="Equipo 1">
+                <div class="score-control">
+                    <label>Puntos:</label>
+                    <input type="number" id="team1Score" value="0" min="0">
+                    <button class="btn-small btn-update" onclick="updateTeamScore(1)">Actualizar</button>
+                </div>
+                <div class="errors-control">
+                    <label>Errores: <span id="team1Errors">0</span></label>
+                    <button class="btn-small btn-error" onclick="addError(1)">+ Error</button>
+                    <button class="btn-small" onclick="resetErrors(1)">Reset</button>
+                </div>
+            </div>
+
+            <div class="team">
+                <h3>Equipo 2</h3>
+                <input type="text" id="team2Name" placeholder="Nombre del Equipo 2" value="Equipo 2">
+                <div class="score-control">
+                    <label>Puntos:</label>
+                    <input type="number" id="team2Score" value="0" min="0">
+                    <button class="btn-small btn-update" onclick="updateTeamScore(2)">Actualizar</button>
+                </div>
+                <div class="errors-control">
+                    <label>Errores: <span id="team2Errors">0</span></label>
+                    <button class="btn-small btn-error" onclick="addError(2)">+ Error</button>
+                    <button class="btn-small" onclick="resetErrors(2)">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controles de Sonido y Juego -->
+        <section class="game-controls">
+            <h2>🎵 Sonidos</h2>
+            <div class="controls-grid">
+                <button class="btn-sound" onclick="playSound('start')">🎺 Sonido Inicio</button>
+                <button class="btn-sound" onclick="playSound('correct')">✅ Sonido Correcto</button>
+                <button class="btn-sound" onclick="playSound('wrong')">❌ Sonido Error</button>
+                <button class="btn-sound" onclick="playSound('win')">⭐ Ganar</button>
+                <button class="btn-sound" onclick="playSound('timer')">⏳ Tiempo</button>
+            </div>
+        </section>
+
+        <!-- Carga de Preguntas -->
+        <section class="upload-section">
+            <h2>📊 Cargar Preguntas</h2>
+            <div class="upload-area">
+                <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+                <label for="fileInput" class="file-label">
+                    📁 Seleccionar archivo Excel/CSV
+                </label>
+                <p class="file-info" id="fileInfo">No hay archivo cargado</p>
+            </div>
+            <div class="url-input">
+                <input type="text" id="sheetsUrl" placeholder="O pega URL de Google Sheets...">
+                <button id="loadSheets" class="btn-secondary">Cargar desde Sheets</button>
+            </div>
+        </section>
+        <section class="reset-section">
+            <button class="btn-primary" onclick="resetGame()">🔄 Reiniciar Juego</button>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/game-logic.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/control-panel.js"></script>
+</body>
+</html>

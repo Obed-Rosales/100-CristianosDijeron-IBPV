@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Cristianos Dijeron - Tablero</title>
+    <link rel="stylesheet" href="css/board.css">
+</head>
+<body>
+    <div class="board-container">
+        <!-- Header con Equipos -->
+        <header class="board-header">
+            <div class="team-display team1">
+                <h2 id="boardTeam1Name">Equipo 1</h2>
+                <div class="score" id="boardTeam1Score">0</div>
+                <div class="errors" id="boardTeam1Errors">
+                    <span class="error-x">❌</span>
+                    <span class="error-x">❌</span>
+                    <span class="error-x">❌</span>
+                </div>
+            </div>
+            
+            <div class="logo-section">
+                <div class="round-points-container">
+                    <div class="round-points-label">Puntos de Ronda</div>
+                    <div class="round-points" id="roundPoints">0</div>
+                </div>
+                <!-- Multiplicador actual -->
+                <div class="multiplier-display" id="multiplierDisplay">
+                    x1
+                </div>
+            </div>
+
+            <div class="team-display team2">
+                <h2 id="boardTeam2Name">Equipo 2</h2>
+                <div class="score" id="boardTeam2Score">0</div>
+                <div class="errors" id="boardTeam2Errors">
+                    <span class="error-x">❌</span>
+                    <span class="error-x">❌</span>
+                    <span class="error-x">❌</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Pregunta Principal -->
+        <section class="question-display">
+            <div class="question-box">
+                <h2 id="boardQuestion">¡Bienvenidos a 100 Cristianos Dijeron!</h2>
+            </div>
+        </section>
+
+        <!-- Tablero de Respuestas -->
+        <section class="answers-board">
+            <div class="answers-grid" id="boardAnswers">
+                <!-- Las respuestas se cargan dinámicamente -->
+                <div class="answer-card hidden">
+                    <div class="answer-number">1</div>
+                    <div class="answer-text">Respuesta</div>
+                    <div class="answer-points">00</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overlay de X grande -->
+        <div class="x-overlay" id="xOverlay">
+            <div class="x-symbol">✖</div>
+        </div>
+    </div>
+
+    <script src="js/game-logic.js"></script>
+    <script src="js/board-display.js"></script>
+</body>
+</html>

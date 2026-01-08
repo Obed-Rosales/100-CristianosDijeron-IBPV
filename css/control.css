@@ -1,0 +1,455 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #7c3aed;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --bg-dark: #1e293b;
+    --bg-light: #f1f5f9;
+    --text-dark: #0f172a;
+    --text-light: #e2e8f0;
+    --border-color: #cbd5e1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+h2 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--bg-light);
+    border-radius: 15px;
+}
+
+/* Botones */
+.btn-primary, .btn-secondary, .btn-small, .btn-sound, .btn-error, .reply-btn, .reveal-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+}
+
+.next-round-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.next-round-btn:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-small:hover {
+    background: #059669;
+}
+
+.btn-error {
+    background: var(--error-color);
+}
+
+.btn-error:hover {
+    background: #dc2626;
+}
+
+.btn-sound {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.btn-sound:hover {
+    transform: scale(1.05);
+}
+
+/* Carga de archivos */
+.upload-section {
+    display: grid;
+    gap: 15px;
+}
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#fileInput {
+    display: none;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.file-label:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.file-info {
+    color: #64748b;
+    font-style: italic;
+}
+
+.url-input {
+    display: flex;
+    gap: 10px;
+}
+
+.url-input input {
+    flex: 1;
+}
+
+/* Inputs */
+input[type="text"], input[type="number"], select {
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Sección de preguntas */
+.search-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search-area input {
+    flex: 1;
+}
+
+#questionSelect {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#questionSelect option {
+    padding: 10px;
+}
+
+/* Equipos */
+.teams-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.team {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 3px solid var(--primary-color);
+}
+
+.team input[type="text"] {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.score-control, .errors-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.score-control label, .errors-control label {
+    font-weight: 600;
+    min-width: 80px;
+}
+
+.score-control input {
+    flex: 1;
+    max-width: 100px;
+}
+
+/* Respuestas */
+.search-answer {
+    margin-bottom: 20px;
+}
+
+.search-results {
+    margin-top: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+.search-result-item {
+    padding: 8px;
+    margin: 5px 0;
+    background: var(--bg-light);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.search-result-item:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.answers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.answer-control {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.answer-control:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.answer-control.revealed {
+    border-color: var(--success-color);
+    background: #d1fae5;
+}
+
+.answer-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.answer-text {
+    font-size: 1rem;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.answer-points {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.reply-btn {
+    width: 60%;
+    margin-top: 10px;
+    padding: 8px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.reply-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.reply-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.reveal-btn {
+    width: 60%;
+    margin-top: 10px;
+    padding: 8px;
+    background: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.reveal-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.reveal-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.answer-control .reply-btn,
+.answer-control .reveal-btn {
+    display: inline-block;
+    margin-right: 2%;
+}
+
+.answer-control .reveal-btn {
+    margin-right: 0;
+}
+
+/* Controles de juego */
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .teams-section {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Sección de Reset del Juego */
+.reset-section {
+    margin-top: 20px;
+}
+
+.reset-section .btn-primary {
+    width: 100%;
+    background-color: #fbbf24;
+    color: #dc2626;
+    font-weight: bold;
+    font-size: x-large;
+    padding: 15px;
+    border: 2px solid #f59e0b;
+    transition: all 0.3s ease;
+}
+
+.reset-section .btn-primary:hover {
+    background-color: #f59e0b;
+    color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+}
+
+.reset-section .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(251, 191, 36, 0.3);
+}
+
+/* Botones de Actualizar - color morado */
+.btn-update {
+    background-color: #7c3aed !important;
+    color: white;
+}
+
+.btn-update:hover {
+    background-color: #6d28d9 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+}
+
+.btn-update:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3);
+}
