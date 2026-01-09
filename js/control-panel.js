@@ -248,6 +248,9 @@ function revealAnswer(index) {
         setTimeout(() => syncToBoard(), 50);
         setTimeout(() => syncToBoard(), 150);
         
+        // Reproducir sonido al revelar
+        playSound('correct');
+        
         // Agregar puntos automáticamente al equipo actual (opcional)
         const points = gameState.currentQuestion.answers[index].points;
         showNotification(`Respuesta revelada: ${points} puntos`, 'success');
@@ -384,7 +387,7 @@ function showTeamSelectionDialog(team1Name, team2Name, points) {
         <p style="font-size: 1.5rem; margin-bottom: 30px; color: #0f172a;">
             ¿Qué equipo ganó los <strong style="color: #f59e0b;">${points} puntos</strong> de esta ronda?
         </p>
-        <div style="display: flex; gap: 20px; justify-content: center;">
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
             <button id="selectTeam1" style="
                 padding: 15px 40px;
                 font-size: 1.2rem;
@@ -415,6 +418,21 @@ function showTeamSelectionDialog(team1Name, team2Name, points) {
                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(124, 58, 237, 0.4)'">
                 ${team2Name}
             </button>
+            <button id="selectNone" style="
+                padding: 15px 40px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                border: 2px solid #6b7280;
+                border-radius: 12px;
+                background: white;
+                color: #374151;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.2)'; this.style.borderColor='#374151'" 
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.borderColor='#6b7280'">
+                ❌ Ninguno
+            </button>
         </div>
     `;
     
@@ -429,6 +447,11 @@ function showTeamSelectionDialog(team1Name, team2Name, points) {
     
     document.getElementById('selectTeam2').addEventListener('click', () => {
         assignPointsToTeam(2, team2Name, points);
+        overlay.remove();
+    });
+    
+    document.getElementById('selectNone').addEventListener('click', () => {
+        skipRound();
         overlay.remove();
     });
     
@@ -454,6 +477,28 @@ function assignPointsToTeam(teamNumber, teamName, points) {
     
     showNotification(`${points} puntos asignados a ${teamName}. Errores reiniciados.`, 'success');
     playSound('start');
+}
+
+function skipRound() {
+    // Resetear la ronda sin asignar puntos a ningún equipo
+    gameState.team1.errors = 0;
+    gameState.team2.errors = 0;
+    gameState.roundPoints = 0;
+    gameState.revealedAnswers = [];
+    gameState.repliedAnswers = [];
+    gameState.currentQuestion = null;
+    gameState.saveToStorage();
+    
+    // Actualizar displays locales
+    loadGameState();
+    displayAnswersControl();
+    
+    // Sincronizar con el tablero
+    syncToBoard();
+    setTimeout(() => syncToBoard(), 50);
+    setTimeout(() => syncToBoard(), 150);
+    
+    showNotification('Ronda omitida. Puntos no asignados. Errores reiniciados.', 'info');
 }
 
 function playSound(type) {

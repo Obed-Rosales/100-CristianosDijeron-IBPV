@@ -1,0 +1,29 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+# Carpetas de IDE
+.vscode/
+.vs/
+.idea/
+
+# Archivos de audio reales (solo si son muy grandes)
+# Descomenta la siguiente línea si tus archivos de sonido son muy grandes
+# sounds/*.mp3
+
+# Logs
+*.log
+
+# Node modules (si decides agregar npm en el futuro)
+node_modules/
+
+# Archivos de configuración local
+.env
+config.local.js

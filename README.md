@@ -1,8 +1,33 @@
-# 100 Cristianos Dijeron 🎮
+# 10## � Jugar en Línea
+
+**Puedes jugar directamente desde tu navegador sin descargar nada:**
+
+- **Panel de Control**: https://obed-rosales.github.io/100-CristianosDijeron-IBPV/
+- **Tablero**: https://obed-rosales.github.io/100-CristianosDijeron-IBPV/board.html
+
+### Activar GitHub Pages
+s Dijeron 🎮
 
 Un juego interactivo basado en "100 Mexicanos Dijeron" (Family Feud) diseñado para la comunidad cristiana.
 
-## 🎯 Características
+## � Jugar en Línea
+
+**Puedes jugar directamente desde tu navegador sin descargar nada:**
+
+- **Panel de Control**: `https://tu-usuario.github.io/nombre-repo/`
+- **Tablero**: `https://tu-usuario.github.io/nombre-repo/board.html`
+
+> **Nota**: Reemplaza `tu-usuario` y `nombre-repo` con los datos de tu repositorio de GitHub.
+
+### Activar GitHub Pages
+
+1. Ve a tu repositorio en GitHub
+2. Click en **Settings** → **Pages**
+3. En **Source**, selecciona `main` y `/root`
+4. Click en **Save**
+5. Espera 2-3 minutos y tu juego estará disponible en línea
+
+## �🎯 Características
 
 - **Interfaz Dual**: Panel de control separado del tablero de juego
 - **Carga de Preguntas**: Soporte para archivos Excel (.xlsx, .xls) y Google Sheets
@@ -11,6 +36,7 @@ Un juego interactivo basado en "100 Mexicanos Dijeron" (Family Feud) diseñado p
 - **Sincronización en Tiempo Real**: Los cambios se reflejan instantáneamente en ambas pantallas
 - **Responsive**: Se adapta a diferentes tamaños de pantalla
 - **Sin Backend**: Funciona 100% en el navegador
+- **GitHub Pages Ready**: Listo para desplegar gratis en GitHub Pages
 
 ## 📋 Requisitos
 
@@ -20,7 +46,15 @@ Un juego interactivo basado en "100 Mexicanos Dijeron" (Family Feud) diseñado p
 
 ## 🚀 Cómo Usar
 
-### Inicio Rápido
+### Opción 1: Jugar en Línea (Recomendado)
+
+1. Activa GitHub Pages en tu repositorio (ver arriba)
+2. Abre la URL en tu navegador
+3. ¡Empieza a jugar!
+
+### Opción 2: Ejecutar Localmente
+
+#### Inicio Rápido
 
 1. **Abrir el Panel de Control**
    - Abre `index.html` en tu navegador

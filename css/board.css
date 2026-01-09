@@ -211,10 +211,10 @@ body {
 }
 
 .question-box h2 {
-    font-size: var(--font-3xl);
+    font-size: clamp(1rem, 3vw, 3.5rem);
     color: var(--text-light);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    line-height: 1.3;
+    line-height: 1.2;
     transition: font-size 0.3s ease, opacity 0.3s ease;
     font-weight: 700;
     margin: 0;
@@ -314,7 +314,7 @@ body {
 }
 
 .answer-number {
-    font-size: clamp(3.3rem, 3.2vh, 3.2rem);
+    font-size: clamp(1.8rem, 3.2vh, 3.2rem);
     font-weight: bold;
     color: var(--gold-color);
     text-align: center;
@@ -329,7 +329,7 @@ body {
 }
 
 .answer-text {
-    font-size: clamp(0.975rem, 2.34vh, 3.12rem);
+    font-size: clamp(0.875rem, 2.34vh, 3.12rem);
     font-weight: 600;
     color: var(--text-light);
     text-transform: uppercase;
@@ -349,7 +349,7 @@ body {
 }
 
 .answer-points {
-    font-size: clamp(3.3rem, 3.2vh, 3.2rem);
+    font-size: clamp(1.8rem, 3.2vh, 3.2rem);
     font-weight: bold;
     color: var(--gold-color);
     text-align: center;
@@ -447,6 +447,7 @@ body {
 @media (max-width: 768px) {
     .answers-grid {
         grid-template-columns: 1fr;
+        gap: clamp(0.5rem, 1.5vh, 1.5rem);
     }
     
     .answer-card {
@@ -455,6 +456,133 @@ body {
         height: calc((68vh - (7 * var(--space-xs))) / 8);
         min-height: clamp(50px, 7vh, 90px);
         max-height: clamp(80px, 12vh, 140px);
+    }
+    
+    .answer-number,
+    .answer-points {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    .answer-text {
+        font-size: clamp(0.75rem, 3vw, 1.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para móviles pequeños (370x630) */
+    .board-container {
+        padding: var(--space-xs);
+        gap: var(--space-xs);
+    }
+    
+    .board-header {
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        grid-template-columns: 1fr;
+        padding: var(--space-xs);
+        gap: var(--space-xs);
+        margin-bottom: var(--space-xs);
+    }
+    
+    .team-display {
+        padding: var(--space-xs);
+    }
+    
+    .team-display h2 {
+        font-size: clamp(0.8rem, 3.5vw, 1.2rem);
+        margin-bottom: var(--space-xs);
+    }
+    
+    .score {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: var(--space-xs);
+    }
+    
+    .errors {
+        gap: var(--space-xs);
+    }
+    
+    .error-x {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+    
+    .logo-section {
+        padding-top: var(--space-xs);
+        padding-bottom: var(--space-sm);
+    }
+    
+    .round-points-container {
+        margin-top: var(--space-sm);
+    }
+    
+    .round-points-label {
+        font-size: clamp(0.65rem, 2.5vw, 0.9rem);
+    }
+    
+    .round-points {
+        font-size: clamp(1.2rem, 5vw, 2rem);
+        padding: var(--space-xs) var(--space-sm);
+        min-width: clamp(60px, 20vw, 120px);
+    }
+    
+    .question-display {
+        height: auto;
+        max-height: none;
+        min-height: auto;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .question-box {
+        padding: var(--space-xs);
+        min-height: 50px;
+    }
+    
+    .question-box h2 {
+        font-size: clamp(0.75rem, 3.5vw, 1.5rem);
+        line-height: 1.15;
+    }
+    
+    .answers-board {
+        padding: var(--space-xs);
+        max-height: none;
+    }
+    
+    .answers-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(0.4rem, 1vh, 0.8rem);
+        padding: 0;
+    }
+    
+    .answer-card {
+        grid-template-columns: minmax(35px, 12vw) 1fr minmax(45px, 14vw);
+        padding: var(--space-xs) var(--space-sm);
+        height: auto;
+        min-height: clamp(45px, 8vh, 70px);
+        max-height: none;
+        gap: var(--space-xs);
+    }
+    
+    .answer-number {
+        font-size: clamp(1.2rem, 5vw, 2rem);
+        padding: var(--space-xs);
+    }
+    
+    .answer-text {
+        font-size: clamp(0.7rem, 3.2vw, 1.2rem);
+        padding: 0 var(--space-xs);
+        line-height: 1.1;
+    }
+    
+    .answer-points {
+        font-size: clamp(1.2rem, 5vw, 2rem);
+        padding: var(--space-xs);
+    }
+    
+    .multiplier-display {
+        font-size: clamp(0.75rem, 3vw, 1rem);
+        padding: var(--space-xs) var(--space-sm);
+        bottom: -10%;
     }
 }
 
