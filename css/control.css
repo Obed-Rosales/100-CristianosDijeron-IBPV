@@ -31,7 +31,7 @@ body {
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
-    background: white;
+    background: darkslateblue;
     border-radius: clamp(10px, 2vw, 20px);
     padding: clamp(15px, 3vw, 30px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -50,7 +50,7 @@ header {
 }
 
 h1 {
-    color: var(--primary-color);
+    color: white;
     font-size: clamp(1.2rem, 4vw, 2rem);
     line-height: 1.2;
     word-break: break-word;
@@ -671,3 +671,50 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
 }
+
+/* Pie de página */
+.footer {
+    margin-top: clamp(20px, 4vw, 30px);
+    padding: clamp(15px, 3vw, 15px);
+    background: linear-gradient(135deg, #2563eb 1%, #79ADDC 50%);
+    border-radius: clamp(8px, 1.5vw, 15px);
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer p {
+    margin: clamp(4px, 1vw, 8px) 0;
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    line-height: 1.6;
+}
+
+.footer strong {
+    font-weight: 700;
+    color: var(--gold-color);
+}
+
+.footer a {
+    color: var(--gold-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        margin-top: clamp(15px, 3vw, 20px);
+        padding: clamp(12px, 2vw, 15px);
+    }
+    
+    .footer p {
+        font-size: clamp(0.7rem, 2vw, 0.85rem);
+        margin: clamp(3px, 0.8vw, 6px) 0;
+    }
+}
+

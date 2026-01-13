@@ -58,6 +58,7 @@ body {
     padding: var(--space-sm);
     gap: clamp(0.3rem, 0.6vh, 0.8rem);
     box-sizing: border-box;
+    background: darkslateblue;
 }
 
 /* Header con equipos - Compacto: ~14% de la altura del viewport */
