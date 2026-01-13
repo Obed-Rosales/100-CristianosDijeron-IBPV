@@ -593,3 +593,81 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     transform: translateY(0);
     box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3);
 }
+
+/* Timer Countdown Overlay - Versión pequeña para panel de control */
+.timer-overlay-control {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: clamp(20px, 4vw, 40px);
+    border-radius: clamp(15px, 3vw, 25px);
+    border: clamp(2px, 0.5vw, 4px) solid var(--gold-color);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease-in-out;
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.5),
+                0 0 60px rgba(245, 158, 11, 0.3);
+}
+
+.timer-overlay-control.show {
+    display: flex;
+}
+
+.timer-countdown-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+.timer-label-control {
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    color: var(--gold-color);
+    text-transform: uppercase;
+    letter-spacing: clamp(1px, 0.2vw, 2px);
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.timer-number-control {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 40px rgba(245, 158, 11, 0.6);
+    line-height: 1;
+    animation: timerPulse 1s ease-in-out infinite;
+    font-family: 'Arial Black', sans-serif;
+}
+
+.timer-number-control.warning {
+    color: var(--error-color);
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.8),
+                 0 0 40px rgba(239, 68, 68, 0.6);
+    animation: timerPulseWarning 0.5s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes timerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes timerPulseWarning {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.1); filter: brightness(1.3); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}

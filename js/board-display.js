@@ -45,6 +45,12 @@ function setupMessageListener() {
             loadBoardState();
         } else if (event.data.type === 'showX') {
             displayXOverlay();
+        } else if (event.data.type === 'startTimer') {
+            startTimerDisplay(event.data.seconds);
+        } else if (event.data.type === 'updateTimer') {
+            updateTimerDisplay(event.data.seconds);
+        } else if (event.data.type === 'stopTimer') {
+            stopTimerDisplay();
         }
     });
 }
@@ -69,6 +75,12 @@ function setupBroadcastListener() {
             loadBoardState();
         } else if (event.data.type === 'showX') {
             displayXOverlay();
+        } else if (event.data.type === 'startTimer') {
+            startTimerDisplay(event.data.seconds);
+        } else if (event.data.type === 'updateTimer') {
+            updateTimerDisplay(event.data.seconds);
+        } else if (event.data.type === 'stopTimer') {
+            stopTimerDisplay();
         }
     };
 }
@@ -471,6 +483,7 @@ function displayXOverlay() {
     // Reproducir sonido de error
     playBoardSound('wrong');
     
+    
     // Mostrar overlay
     const overlay = document.getElementById('xOverlay');
     if (overlay) {
@@ -480,5 +493,40 @@ function displayXOverlay() {
         setTimeout(() => {
             overlay.classList.remove('show');
         }, 2000);
+    }
+}
+
+// Funciones para manejar el timer countdown
+function startTimerDisplay(seconds) {
+    const overlay = document.getElementById('timerOverlay');
+    const numberElement = document.getElementById('timerNumber');
+    
+    if (overlay && numberElement) {
+        numberElement.textContent = seconds;
+        numberElement.classList.remove('warning');
+        overlay.classList.add('show');
+    }
+}
+
+function updateTimerDisplay(seconds) {
+    const numberElement = document.getElementById('timerNumber');
+    
+    if (numberElement) {
+        numberElement.textContent = seconds;
+        
+        // Advertencia en los últimos 3 segundos
+        if (seconds <= 3 && seconds > 0) {
+            numberElement.classList.add('warning');
+        } else {
+            numberElement.classList.remove('warning');
+        }
+    }
+}
+
+function stopTimerDisplay() {
+    const overlay = document.getElementById('timerOverlay');
+    
+    if (overlay) {
+        overlay.classList.remove('show');
     }
 }

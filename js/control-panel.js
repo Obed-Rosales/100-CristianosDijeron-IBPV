@@ -464,6 +464,8 @@ function skipRound() {
 
 // Variable global para mantener referencia al audio del timer
 let timerAudio = null;
+let timerInterval = null;
+let timerSeconds = 10;
 
 function playSound(type) {
     const sounds = {
@@ -477,33 +479,129 @@ function playSound(type) {
     
     const audio = new Audio(sounds[type]);
     
-    // Si es el timer, guardar referencia para poder detenerlo
+    // Si es el timer, guardar referencia para poder detenerlo y mostrar countdown
     if (type === 'timer') {
         // Detener el anterior si existe
         if (timerAudio) {
             timerAudio.pause();
             timerAudio.currentTime = 0;
         }
+        
+        // Detener el intervalo anterior si existe
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        
         timerAudio = audio;
+        
+        // Iniciar countdown visual
+        startTimerCountdown();
         
         // Limpiar referencia cuando termine
         audio.addEventListener('ended', () => {
             timerAudio = null;
+            stopTimerCountdown();
         });
     }
     
     audio.play().catch(e => console.log('Audio play failed:', e));
 }
 
+function startTimerCountdown() {
+    // Resetear a 10 segundos
+    timerSeconds = 10;
+    
+    // Mostrar overlay en panel de control
+    const overlayControl = document.getElementById('timerOverlayControl');
+    const numberControl = document.getElementById('timerNumberControl');
+    overlayControl.classList.add('show');
+    numberControl.textContent = timerSeconds;
+    numberControl.classList.remove('warning');
+    
+    // Enviar comando al tablero para mostrar countdown
+    syncChannel.postMessage({
+        type: 'startTimer',
+        seconds: timerSeconds
+    });
+    
+    // Si el tablero está abierto, también ejecutar directamente
+    if (boardWindow && !boardWindow.closed) {
+        boardWindow.postMessage({ 
+            type: 'startTimer',
+            seconds: timerSeconds
+        }, '*');
+    }
+    
+    // Iniciar cuenta regresiva
+    timerInterval = setInterval(() => {
+        timerSeconds--;
+        
+        // Actualizar display local
+        numberControl.textContent = timerSeconds;
+        
+        // Advertencia en los últimos 3 segundos
+        if (timerSeconds <= 3 && timerSeconds > 0) {
+            numberControl.classList.add('warning');
+        }
+        
+        // Enviar actualización al tablero
+        syncChannel.postMessage({
+            type: 'updateTimer',
+            seconds: timerSeconds
+        });
+        
+        if (boardWindow && !boardWindow.closed) {
+            boardWindow.postMessage({ 
+                type: 'updateTimer',
+                seconds: timerSeconds
+            }, '*');
+        }
+        
+        // Detener cuando llegue a 0
+        if (timerSeconds <= 0) {
+            stopTimerCountdown();
+        }
+    }, 1000);
+}
+
+function stopTimerCountdown() {
+    // Detener intervalo
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    
+    // Ocultar overlay en panel de control
+    const overlayControl = document.getElementById('timerOverlayControl');
+    if (overlayControl) {
+        overlayControl.classList.remove('show');
+    }
+    
+    // Enviar comando al tablero para ocultar countdown
+    syncChannel.postMessage({
+        type: 'stopTimer'
+    });
+    
+    if (boardWindow && !boardWindow.closed) {
+        boardWindow.postMessage({ 
+            type: 'stopTimer'
+        }, '*');
+    }
+}
+
 function stopTimerSound() {
+    // Detener audio
     if (timerAudio) {
         timerAudio.pause();
         timerAudio.currentTime = 0;
         timerAudio = null;
-        showNotification('Sonido del timer detenido', 'info');
-    } else {
-        showNotification('No hay sonido de timer reproduciéndose', 'info');
     }
+    
+    // Detener countdown visual
+    stopTimerCountdown();
+    
+    showNotification('Sonido del timer detenido', 'info');
 }
 
 function resetGame() {
