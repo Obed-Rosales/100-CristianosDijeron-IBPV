@@ -6,46 +6,46 @@
     <title>100 Cristianos Dijeron - Panel de Control</title>
     <link rel="stylesheet" href="css/control.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1><img src="res/img/banner.png" alt="Logo" style="height: 1.5em; vertical-align: middle; margin-right: 10px;"> 100 Cristianos Dijeron</h1>
+<body id="controlPanelBody">
+    <div id="mainContainer" class="container">
+        <header id="mainHeader">
+            <h1 id="mainTitle"><img id="logoImage" src="res/img/banner.png" alt="Logo" style="height: 1.5em; vertical-align: middle; margin-right: 10px;"> 100 Cristianos Dijeron</h1>
             <button id="openBoard" class="btn-primary">Abrir Tablero</button>
         </header>
 
         <!-- Selección de Pregunta -->
-        <section class="question-section">
-            <h2>❓ Seleccionar Pregunta</h2>
-            <div class="search-area">
+        <section id="questionSection" class="question-section">
+            <h2 id="questionSectionTitle">❓ Seleccionar Pregunta</h2>
+            <div id="searchArea" class="search-area">
                 <input type="text" id="searchQuestion" placeholder="Buscar pregunta...">
                 <button id="searchBtn" class="btn-secondary">🔍 Buscar</button>
             </div>
             <select id="questionSelect" size="8">
                 <option value="">-- Carga preguntas primero --</option>
             </select>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <div id="questionButtonsContainer" style="display: flex; gap: 10px; margin-top: 10px;">
                 <button id="loadQuestion" class="btn-primary" style="flex: 1;">Cargar Pregunta al Tablero</button>
                 <button id="resetUsedQuestions" class="btn-secondary" onclick="resetUsedQuestions()" title="Limpiar historial de preguntas usadas">🔄 Reiniciar Historial de preguntas</button>
             </div>
         </section>
 
         <!-- Control de Respuestas -->
-        <section class="answers-section">
-            <h2>✅ Control de Respuestas</h2>
+        <section id="answersSection" class="answers-section">
+            <h2 id="answersSectionTitle">✅ Control de Respuestas</h2>
             <div id="answersControl" class="answers-grid">
-                <p>Carga una pregunta para ver las respuestas</p>
+                <p id="answersPlaceholder">Carga una pregunta para ver las respuestas</p>
             </div>
-            <div class="controls-grid">
+            <div id="controlsGrid" class="controls-grid">
 
                 <!-- Botón Siguiente Ronda -->
-                <button class="btn-primary next-round-btn" style="margin-top: 10px;" onclick="nextRound()">➡️ Siguiente Ronda</button>
+                <button id="nextRoundBtn" class="btn-primary next-round-btn" style="margin-top: 10px;" onclick="nextRound()">➡️ Siguiente Ronda</button>
                 
                 <!-- Control de Multiplicador -->
-                <div style="margin-top: 20px;">
-                    <label for="multiplierInput" style="font-weight: 600; margin-right: 10px;">Multiplicador:</label>
+                <div id="multiplierContainer" style="margin-top: 20px;">
+                    <label id="multiplierLabel" for="multiplierInput" style="font-weight: 600; margin-right: 10px;">Multiplicador:</label>
                     <input type="number" id="multiplierInput" value="1" min="1" max="5" style="width: 80px; padding: 8px;">
-                    <button class="btn-secondary btn-update" onclick="updateMultiplier()">Actualizar</button>
-                    <button class="btn-error" onclick="showXOverlay()" style="margin-left: 10px; font-size: 20px; font-weight: bold;">❌ Error grande</button>
+                    <button id="updateMultiplierBtn" class="btn-secondary btn-update" onclick="updateMultiplier()">Actualizar</button>
+                    <button id="showXBtn" class="btn-error" onclick="showXOverlay()" style="margin-left: 10px; font-size: 20px; font-weight: bold;">❌ Error grande</button>
                 </div>
 
             </div>
@@ -53,68 +53,70 @@
         </section>
 
         <!-- Control de Equipos -->
-        <section class="teams-section">
-            <div class="team">
-                <h3>Equipo 1</h3>
+        <section id="teamsSection" class="teams-section">
+            <div id="team1Container" class="team">
+                <h3 id="team1Title">Equipo 1</h3>
+                <h3 id="team1Title">Equipo 1</h3>
                 <input type="text" id="team1Name" placeholder="Nombre del Equipo 1" value="Equipo 1">
-                <div class="score-control">
-                    <label>Puntos:</label>
+                <div id="team1ScoreControl" class="score-control">
+                    <label id="team1ScoreLabel">Puntos:</label>
                     <input type="number" id="team1Score" value="0" min="0">
-                    <button class="btn-small btn-update" onclick="updateTeamScore(1)">Actualizar</button>
+                    <button id="team1UpdateScoreBtn" class="btn-small btn-update" onclick="updateTeamScore(1)">Actualizar</button>
                 </div>
-                <div class="errors-control">
-                    <label>Errores: <span id="team1Errors">0</span></label>
-                    <button class="btn-small btn-error" onclick="addError(1)">+ Error</button>
-                    <button class="btn-small" onclick="resetErrors(1)">Reset</button>
+                <div id="team1ErrorsControl" class="errors-control">
+                    <label id="team1ErrorsLabel">Errores: <span id="team1Errors">0</span></label>
+                    <button id="team1AddErrorBtn" class="btn-small btn-error" onclick="addError(1)">+ Error</button>
+                    <button id="team1ResetErrorsBtn" class="btn-small" onclick="resetErrors(1)">Reset</button>
                 </div>
             </div>
 
-            <div class="team">
-                <h3>Equipo 2</h3>
+            <div id="team2Container" class="team">
+                <h3 id="team2Title">Equipo 2</h3>
                 <input type="text" id="team2Name" placeholder="Nombre del Equipo 2" value="Equipo 2">
-                <div class="score-control">
-                    <label>Puntos:</label>
+                <div id="team2ScoreControl" class="score-control">
+                    <label id="team2ScoreLabel">Puntos:</label>
                     <input type="number" id="team2Score" value="0" min="0">
-                    <button class="btn-small btn-update" onclick="updateTeamScore(2)">Actualizar</button>
+                    <button id="team2UpdateScoreBtn" class="btn-small btn-update" onclick="updateTeamScore(2)">Actualizar</button>
                 </div>
-                <div class="errors-control">
-                    <label>Errores: <span id="team2Errors">0</span></label>
-                    <button class="btn-small btn-error" onclick="addError(2)">+ Error</button>
-                    <button class="btn-small" onclick="resetErrors(2)">Reset</button>
+                <div id="team2ErrorsControl" class="errors-control">
+                    <label id="team2ErrorsLabel">Errores: <span id="team2Errors">0</span></label>
+                    <button id="team2AddErrorBtn" class="btn-small btn-error" onclick="addError(2)">+ Error</button>
+                    <button id="team2ResetErrorsBtn" class="btn-small" onclick="resetErrors(2)">Reset</button>
                 </div>
             </div>
         </section>
 
         <!-- Controles de Sonido y Juego -->
-        <section class="game-controls">
-            <h2>🎵 Sonidos</h2>
-            <div class="controls-grid">
-                <button class="btn-sound" onclick="playSound('start')">🎺 Sonido Inicio</button>
-                <button class="btn-sound" onclick="playSound('correct')">✅ Sonido Correcto</button>
-                <button class="btn-sound" onclick="playSound('wrong')">❌ Sonido Error</button>
-                <button class="btn-sound" onclick="playSound('win')">⭐ Ganar</button>
-                <button class="btn-sound" onclick="playSound('timer')">⏳ Tiempo</button>
-                <button class="btn-sound btn-error" onclick="stopTimerSound()">⏹️ Detener Tiempo</button>
+        <section id="gameControlsSection" class="game-controls">
+            <h2 id="soundsTitle">🎵 Sonidos</h2>
+            <div id="soundControlsGrid" class="controls-grid">
+                <button id="playSoundStartBtn" class="btn-sound" onclick="playSound('start')">🎺 Sonido Inicio</button>
+                <button id="playSoundCorrectBtn" class="btn-sound" onclick="playSound('correct')">✅ Sonido Correcto</button>
+                <button id="playSoundWrongBtn" class="btn-sound" onclick="playSound('wrong')">❌ Sonido Error</button>
+                <button id="playSoundWinBtn" class="btn-sound" onclick="playSound('win')">⭐ Ganar</button>
+                <button id="playSoundTimerBtn" class="btn-sound" onclick="playSound('timer')">⏳ Tiempo</button>
+                <button id="stopTimerSoundBtn" class="btn-sound btn-error" onclick="stopTimerSound()">⏹️ Detener Tiempo</button>
             </div>
         </section>
 
         <!-- Carga de Preguntas -->
-        <section class="upload-section">
-            <h2>📊 Cargar Preguntas</h2>
-            <div class="upload-area">
+        <section id="uploadSection" class="upload-section">
+            <h2 id="uploadTitle">📊 Cargar Preguntas</h2>
+            <div id="uploadArea" class="upload-area">
+            <div id="uploadArea" class="upload-area">
                 <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
-                <label for="fileInput" class="file-label">
+                <label id="fileInputLabel" for="fileInput" class="file-label">
                     📁 Seleccionar archivo Excel/CSV
                 </label>
-                <p class="file-info" id="fileInfo">No hay archivo cargado</p>
+                <p id="fileInfo" class="file-info">No hay archivo cargado</p>
             </div>
-            <div class="url-input">
+            <div id="urlInputContainer" class="url-input">
                 <input type="text" id="sheetsUrl" placeholder="O pega URL de Google Sheets...">
                 <button id="loadSheets" class="btn-secondary">Cargar desde Sheets</button>
             </div>
         </section>
-        <section class="reset-section">
-            <button class="btn-primary" onclick="resetGame()">🔄 Reiniciar Juego</button>
+        <section id="resetSection" class="reset-section">
+            <button id="resetGameBtn" class="btn-primary" onclick="resetGame()">🔄 Reiniciar Juego</button>
         </section>
     </div>
 

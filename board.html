@@ -6,54 +6,54 @@
     <title>100 Cristianos Dijeron - Tablero</title>
     <link rel="stylesheet" href="css/board.css">
 </head>
-<body>
-    <div class="board-container">
+<body id="boardBody">
+    <div id="boardContainer" class="board-container">
         <!-- Header con Equipos -->
-        <header class="board-header">
-            <div class="team-display team1">
+        <header id="boardHeader" class="board-header">
+            <div id="team1Display" class="team-display team1">
                 <h2 id="boardTeam1Name">Equipo 1</h2>
-                <div class="score" id="boardTeam1Score">0</div>
-                <div class="errors" id="boardTeam1Errors">
-                    <span class="error-x">❌</span>
-                    <span class="error-x">❌</span>
-                    <span class="error-x">❌</span>
+                <div id="boardTeam1Score" class="score">0</div>
+                <div id="boardTeam1Errors" class="errors">
+                    <span id="team1Error1" class="error-x">❌</span>
+                    <span id="team1Error2" class="error-x">❌</span>
+                    <span id="team1Error3" class="error-x">❌</span>
                 </div>
             </div>
             
-            <div class="logo-section">
-                <div class="round-points-container">
-                    <div class="round-points-label">Puntos de Ronda</div>
-                    <div class="round-points" id="roundPoints">0</div>
+            <div id="logoSection" class="logo-section">
+                <div id="roundPointsContainer" class="round-points-container">
+                    <div id="roundPointsLabel" class="round-points-label">Puntos de Ronda</div>
+                    <div id="roundPoints" class="round-points">0</div>
                 </div>
                 <!-- Multiplicador actual -->
-                <div class="multiplier-display" id="multiplierDisplay">
+                <div id="multiplierDisplay" class="multiplier-display">
                     x1
                 </div>
             </div>
 
-            <div class="team-display team2">
+            <div id="team2Display" class="team-display team2">
                 <h2 id="boardTeam2Name">Equipo 2</h2>
-                <div class="score" id="boardTeam2Score">0</div>
-                <div class="errors" id="boardTeam2Errors">
-                    <span class="error-x">❌</span>
-                    <span class="error-x">❌</span>
-                    <span class="error-x">❌</span>
+                <div id="boardTeam2Score" class="score">0</div>
+                <div id="boardTeam2Errors" class="errors">
+                    <span id="team2Error1" class="error-x">❌</span>
+                    <span id="team2Error2" class="error-x">❌</span>
+                    <span id="team2Error3" class="error-x">❌</span>
                 </div>
             </div>
         </header>
 
         <!-- Pregunta Principal -->
-        <section class="question-display">
-            <div class="question-box">
+        <section id="questionDisplaySection" class="question-display">
+            <div id="questionBox" class="question-box">
                 <h2 id="boardQuestion">¡Bienvenidos a 100 Cristianos Dijeron!</h2>
             </div>
         </section>
 
         <!-- Tablero de Respuestas -->
-        <section class="answers-board">
-            <div class="answers-grid" id="boardAnswers">
+        <section id="answersBoardSection" class="answers-board">
+            <div id="boardAnswers" class="answers-grid">
                 <!-- Las respuestas se cargan dinámicamente -->
-                <div class="answer-card hidden">
+                <div id="answerCardTemplate" class="answer-card hidden">
                     <div class="answer-number">1</div>
                     <div class="answer-text">Respuesta</div>
                     <div class="answer-points">00</div>
@@ -62,8 +62,8 @@
         </section>
 
         <!-- Overlay de X grande -->
-        <div class="x-overlay" id="xOverlay">
-            <div class="x-symbol">✖</div>
+        <div id="xOverlay" class="x-overlay">
+            <div id="xSymbol" class="x-symbol">✖</div>
         </div>
     </div>
 
