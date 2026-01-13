@@ -20,60 +20,79 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    padding: 20px;
+    width: 100%;
+    padding: clamp(0.5rem, 2vw, 20px);
     color: var(--text-dark);
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .container {
     max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
     background: white;
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: clamp(10px, 2vw, 20px);
+    padding: clamp(15px, 3vw, 30px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 30px);
+    padding-bottom: clamp(10px, 2vw, 20px);
     border-bottom: 3px solid var(--primary-color);
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 h1 {
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+h1 img {
+    height: clamp(1em, 3vw, 1.5em) !important;
 }
 
 h2 {
     color: var(--secondary-color);
-    margin-bottom: 15px;
-    font-size: 1.5rem;
+    margin-bottom: clamp(10px, 2vw, 15px);
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
 h3 {
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: clamp(8px, 1.5vw, 10px);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
 section {
-    margin-bottom: 30px;
-    padding: 20px;
+    margin-bottom: clamp(15px, 3vw, 30px);
+    padding: clamp(10px, 2vw, 20px);
     background: var(--bg-light);
-    border-radius: 15px;
+    border-radius: clamp(8px, 1.5vw, 15px);
+    box-sizing: border-box;
 }
 
 /* Botones */
 .btn-primary, .btn-secondary, .btn-small, .btn-sound, .btn-error, .reply-btn, .reveal-btn {
-    padding: 12px 24px;
+    padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 24px);
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: clamp(6px, 1.5vw, 8px);
+    font-size: clamp(0.85rem, 2vw, 1rem);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .btn-primary {
@@ -395,17 +414,138 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .teams-section {
-        grid-template-columns: 1fr;
+    body {
+        padding: clamp(0.25rem, 1vw, 0.5rem);
     }
     
-    h1 {
-        font-size: 1.5rem;
+    .container {
+        padding: clamp(10px, 2vw, 15px);
+        border-radius: clamp(8px, 1.5vw, 12px);
     }
     
     header {
         flex-direction: column;
-        gap: 15px;
+        gap: clamp(8px, 2vw, 15px);
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+    
+    #openBoard {
+        width: 100%;
+    }
+    
+    .teams-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .team {
+        width: 100%;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        padding: clamp(8px, 2vw, 10px);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .btn-primary, .btn-secondary, .btn-small, .btn-sound, .btn-error {
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
+        padding: clamp(8px, 2vw, 10px) clamp(10px, 2.5vw, 16px);
+        white-space: normal;
+    }
+    
+    .controls-grid,
+    .sound-controls-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(8px, 2vw, 12px);
+    }
+    
+    .answers-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(8px, 2vw, 12px);
+    }
+    
+    .answer-control {
+        padding: clamp(10px, 2vw, 12px);
+    }
+    
+    .search-area,
+    .url-input {
+        flex-direction: column;
+        gap: clamp(8px, 2vw, 10px);
+    }
+    
+    .search-area input,
+    .url-input input {
+        width: 100%;
+    }
+    
+    .search-area button,
+    .url-input button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.25rem;
+    }
+    
+    .container {
+        padding: clamp(8px, 2vw, 12px);
+        border-radius: 8px;
+    }
+    
+    h1 {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+    }
+    
+    h2 {
+        font-size: clamp(0.95rem, 3vw, 1.2rem);
+    }
+    
+    h3 {
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+    }
+    
+    section {
+        padding: clamp(8px, 2vw, 12px);
+        margin-bottom: clamp(10px, 2vw, 15px);
+    }
+    
+    .score-control,
+    .errors-control {
+        flex-direction: column;
+        gap: clamp(6px, 1.5vw, 8px);
+        align-items: stretch;
+    }
+    
+    .score-control label,
+    .errors-control label {
+        width: 100%;
+    }
+    
+    .score-control input,
+    .errors-control input {
+        width: 100%;
+    }
+    
+    .btn-small {
+        width: 100%;
+        margin-top: clamp(4px, 1vw, 6px);
+    }
+    
+    #multiplierInput {
+        width: 100% !important;
+        max-width: 100px;
     }
 }
 
