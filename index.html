@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎮 100 Cristianos Dijeron - Control</h1>
+            <h1><img src="res/img/banner.png" alt="Logo" style="height: 1.5em; vertical-align: middle; margin-right: 10px;"> 100 Cristianos Dijeron</h1>
             <button id="openBoard" class="btn-primary">Abrir Tablero</button>
         </header>
 
@@ -25,18 +25,13 @@
             </select>
             <div style="display: flex; gap: 10px; margin-top: 10px;">
                 <button id="loadQuestion" class="btn-primary" style="flex: 1;">Cargar Pregunta al Tablero</button>
-                <button id="resetUsedQuestions" class="btn-secondary" onclick="resetUsedQuestions()" title="Limpiar historial de preguntas usadas">🔄 Reiniciar Historial</button>
+                <button id="resetUsedQuestions" class="btn-secondary" onclick="resetUsedQuestions()" title="Limpiar historial de preguntas usadas">🔄 Reiniciar Historial de preguntas</button>
             </div>
         </section>
 
         <!-- Control de Respuestas -->
         <section class="answers-section">
             <h2>✅ Control de Respuestas</h2>
-            <div class="search-answer">
-                <input type="text" id="searchAnswer" placeholder="Buscar respuesta (palabras clave)...">
-                <button id="searchAnswerBtn" class="btn-secondary">🔍 Buscar</button>
-                <div id="searchResults" class="search-results"></div>
-            </div>
             <div id="answersControl" class="answers-grid">
                 <p>Carga una pregunta para ver las respuestas</p>
             </div>
@@ -99,6 +94,7 @@
                 <button class="btn-sound" onclick="playSound('wrong')">❌ Sonido Error</button>
                 <button class="btn-sound" onclick="playSound('win')">⭐ Ganar</button>
                 <button class="btn-sound" onclick="playSound('timer')">⏳ Tiempo</button>
+                <button class="btn-sound btn-error" onclick="stopTimerSound()">⏹️ Detener Tiempo</button>
             </div>
         </section>
 

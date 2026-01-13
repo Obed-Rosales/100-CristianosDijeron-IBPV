@@ -41,12 +41,6 @@ function setupEventListeners() {
     // Cargar pregunta al tablero
     document.getElementById('loadQuestion').addEventListener('click', loadQuestionToBoard);
     
-    // Búsqueda de respuestas
-    document.getElementById('searchAnswerBtn').addEventListener('click', searchAnswers);
-    document.getElementById('searchAnswer').addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') searchAnswers();
-    });
-    
     // Actualizar nombres de equipos
     document.getElementById('team1Name').addEventListener('change', (e) => {
         gameState.updateTeamName(1, e.target.value);
@@ -255,39 +249,6 @@ function revealAnswer(index) {
         const points = gameState.currentQuestion.answers[index].points;
         showNotification(`Respuesta revelada: ${points} puntos`, 'success');
     }
-}
-
-function searchAnswers() {
-    const keyword = document.getElementById('searchAnswer').value.trim();
-    const resultsDiv = document.getElementById('searchResults');
-    
-    if (!keyword) {
-        resultsDiv.innerHTML = '';
-        return;
-    }
-    
-    const results = gameState.searchAnswers(keyword);
-    
-    if (results.length === 0) {
-        resultsDiv.innerHTML = '<p style="color: #ef4444;">No se encontraron respuestas similares</p>';
-        return;
-    }
-    
-    resultsDiv.innerHTML = '<strong>Resultados encontrados (clic para responder):</strong>';
-    results.forEach(result => {
-        const item = document.createElement('div');
-        item.className = 'search-result-item';
-        item.innerHTML = `
-            <strong>#${result.index + 1}</strong> - ${result.answer.text} 
-            <span style="color: #f59e0b;">(${result.answer.points} pts)</span>
-        `;
-        item.onclick = () => {
-            replyAnswer(result.index);
-            document.getElementById('searchAnswer').value = '';
-            resultsDiv.innerHTML = '';
-        };
-        resultsDiv.appendChild(item);
-    });
 }
 
 function updateTeamScore(teamNumber) {
@@ -501,6 +462,9 @@ function skipRound() {
     showNotification('Ronda omitida. Puntos no asignados. Errores reiniciados.', 'info');
 }
 
+// Variable global para mantener referencia al audio del timer
+let timerAudio = null;
+
 function playSound(type) {
     const sounds = {
         start: 'res/audio/start.mp3',
@@ -512,7 +476,34 @@ function playSound(type) {
     };
     
     const audio = new Audio(sounds[type]);
+    
+    // Si es el timer, guardar referencia para poder detenerlo
+    if (type === 'timer') {
+        // Detener el anterior si existe
+        if (timerAudio) {
+            timerAudio.pause();
+            timerAudio.currentTime = 0;
+        }
+        timerAudio = audio;
+        
+        // Limpiar referencia cuando termine
+        audio.addEventListener('ended', () => {
+            timerAudio = null;
+        });
+    }
+    
     audio.play().catch(e => console.log('Audio play failed:', e));
+}
+
+function stopTimerSound() {
+    if (timerAudio) {
+        timerAudio.pause();
+        timerAudio.currentTime = 0;
+        timerAudio = null;
+        showNotification('Sonido del timer detenido', 'info');
+    } else {
+        showNotification('No hay sonido de timer reproduciéndose', 'info');
+    }
 }
 
 function resetGame() {
