@@ -190,6 +190,39 @@ section {
     font-style: italic;
 }
 
+/* Botón de descarga de ejemplo */
+.download-example {
+    margin: clamp(15px, 3vw, 20px) 0;
+    text-align: center;
+}
+
+.btn-download {
+    display: inline-block;
+    padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 30px);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: clamp(6px, 1.5vw, 8px);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    border: 2px solid transparent;
+}
+
+.btn-download:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    border-color: #10b981;
+}
+
+.btn-download:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4);
+}
+
 .url-input {
     display: flex;
     gap: 10px;
@@ -491,6 +524,12 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus {
     .search-area button,
     .url-input button {
         width: 100%;
+    }
+    
+    .btn-download {
+        width: 100%;
+        padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px);
+        font-size: clamp(0.8rem, 2vw, 0.95rem);
     }
 }
 

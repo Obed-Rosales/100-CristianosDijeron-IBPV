@@ -108,13 +108,20 @@
         <section id="uploadSection" class="upload-section">
             <h2 id="uploadTitle">📊 Cargar Preguntas</h2>
             <div id="uploadArea" class="upload-area">
-            <div id="uploadArea" class="upload-area">
                 <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
                 <label id="fileInputLabel" for="fileInput" class="file-label">
-                    📁 Seleccionar archivo Excel/CSV
+                    📁 Seleccionar archivo Excel/CSV local
                 </label>
                 <p id="fileInfo" class="file-info">No hay archivo cargado</p>
             </div>
+            
+            <!-- Botón de descarga de ejemplo -->
+            <div id="downloadExampleContainer" class="download-example">
+                <a id="downloadExampleBtn" href="res/docs/preguntas_ejemplo.xlsx" download="preguntas_ejemplo.xlsx" class="btn-download">
+                    💾 Descargar archivo con preguntas de ejemplo
+                </a>
+            </div>
+            
             <div id="urlInputContainer" class="url-input">
                 <input type="text" id="sheetsUrl" placeholder="O pega URL de Google Sheets...">
                 <button id="loadSheets" class="btn-secondary">Cargar desde Sheets</button>
