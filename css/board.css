@@ -89,6 +89,13 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     border: clamp(1px, 0.2vw, 3px) solid var(--gold-color);
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .team-display h2 {
@@ -97,6 +104,9 @@ body {
     text-transform: uppercase;
     color: var(--gold-color);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .score {
@@ -106,12 +116,17 @@ body {
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
     margin-bottom: var(--space-sm);
     line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .errors {
     display: flex;
     justify-content: center;
     gap: var(--space-sm);
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .error-x {
@@ -134,40 +149,62 @@ body {
 .logo-section {
     text-align: center;
     position: relative;
-    padding-bottom: var(--space-xl);
-    padding-top: 0;
-    margin-top: calc(var(--space-sm) * -1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    overflow: visible;
+    height: 100%;
+    padding: clamp(0.2rem, 1vw, var(--space-sm)) 0;
+    gap: clamp(0.3rem, 1vw, var(--space-sm));
+    padding-bottom: clamp(1.5rem, 5vw, 3rem);
 }
 
 /* Estilos de game-title removidos - ahora el marcador es el fondo del header */
 
 .round-points-container {
-    margin-top: 50px;
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.1rem, 0.3vw, var(--space-xs));
+    margin-top: 10%;
 }
 
 .round-points-label {
-    font-size: var(--font-base);
+    font-size: clamp(0.45rem, 1vw, var(--font-base));
     font-weight: 600;
     color: var(--gold-color);
     text-transform: uppercase;
-    letter-spacing: clamp(0.5px, 0.1vw, 2px);
-    margin-bottom: var(--space-xs);
+    letter-spacing: clamp(0.2px, 0.05vw, 1.5px);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .round-points {
-    font-size: var(--font-3xl);
+    font-size: clamp(1rem, 2.5vw, var(--font-3xl));
     font-weight: bold;
     color: var(--gold-color);
     text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
     background: rgba(0, 0, 0, 0.4);
-    padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-lg);
-    border: clamp(1px, 0.3vw, 3px) solid var(--gold-color);
+    padding: clamp(0.15rem, 0.6vw, var(--space-sm)) clamp(0.3rem, 1.2vw, var(--space-lg));
+    border-radius: clamp(0.3rem, 0.8vw, var(--radius-lg));
+    border: clamp(1px, 0.2vw, 3px) solid var(--gold-color);
     display: inline-block;
-    min-width: clamp(100px, 15vw, 200px);
+    min-width: clamp(50px, 10vw, 180px);
+    max-width: 100%;
     transition: transform 0.3s ease;
     line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .round-points.animate {
@@ -409,20 +446,27 @@ body {
 /* Multiplicador */
 .multiplier-display {
     position: absolute;
-    bottom: -17%;
-    left: 46%;
-    right: 46%;
-    transform: translateX(-50%) scale(1.3);
-    font-size: var(--font-lg);
+    bottom: clamp(5%, 8%, 10%);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(0.5rem, 1.5vw, 1rem);
     font-weight: bold;
     color: var(--gold-color);
     background: rgba(0, 0, 0, 0.6);
-    padding: var(--space-xs) var(--space-md);
-    border-radius: var(--radius-lg);
-    border: clamp(1px, 0.3vw, 3px) solid var(--gold-color);
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    padding: clamp(0.1rem, 0.4vw, 0.3rem) clamp(0.25rem, 0.8vw, 0.6rem);
+    border-radius: clamp(0.25rem, 0.8vw, 0.8rem);
+    border: clamp(1px, 0.15vw, 2px) solid var(--gold-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     animation: pulse 2s ease-in-out infinite;
     line-height: 1;
+    white-space: nowrap;
+    max-width: clamp(35px, 12vw, 80px);
+    min-width: clamp(25px, 8vw, 50px);
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes pulse {
@@ -443,9 +487,66 @@ body {
 }
 
 /* Responsive - Solo ajustes de layout, los tamaños son fluidos */
+@media (max-width: 1200px) {
+    .board-header {
+        grid-template-columns: 1fr 1.5fr 1fr;
+        gap: clamp(0.3rem, 1vw, 0.6rem);
+    }
+    
+    .team-display h2 {
+        font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    }
+    
+    .score {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+    
+    .round-points-label {
+        font-size: clamp(0.65rem, 1.8vw, 1rem);
+    }
+    
+    .round-points {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
+    }
+}
+
 @media (max-width: 1024px) {
     .board-header {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 2fr 1fr; /* MANTENER 3 COLUMNAS */
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        gap: clamp(0.3rem, 1vw, 0.6rem);
+        padding: clamp(0.4rem, 1.5vw, 0.8rem);
+    }
+    
+    .team-display {
+        padding: clamp(0.3rem, 1vw, 0.5rem);
+    }
+    
+    .logo-section {
+        padding-top: clamp(0.3rem, 1vh, 0.5rem);
+        padding-bottom: clamp(0.5rem, 1.5vh, 0.8rem);
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+        display: contents;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .round-points-container {
+        margin-top: clamp(0.5rem, 2vh, 1rem);
+    }
+    
+    .multiplier-display {
+        bottom: 0%;
+        font-size: clamp(0.55rem, 1.6vw, 1rem);
+        padding: clamp(0.12rem, 0.5vw, 0.3rem) clamp(0.25rem, 1vw, 0.6rem);
+        max-width: clamp(35px, 13vw, 80px);
+        min-width: clamp(25px, 8vw, 50px);
     }
 }
 
@@ -455,41 +556,58 @@ body {
         gap: clamp(0.25rem, 0.5vh, 0.5rem);
     }
     
+    /* MANTENER 3 COLUMNAS - Hacer logoSection más grande */
     .board-header {
         height: auto;
         max-height: none;
         min-height: auto;
-        grid-template-columns: 1fr;
-        gap: clamp(0.25rem, 0.5vh, 0.5rem);
+        grid-template-columns: 1fr 2.5fr 1fr; /* logoSection más grande */
+        gap: clamp(0.2rem, 0.5vw, 0.4rem);
         padding: clamp(0.3rem, 1vw, 0.6rem);
         margin-bottom: clamp(0.25rem, 0.5vh, 0.5rem);
+        align-items: center;
     }
     
     .team-display {
-        padding: clamp(0.3rem, 1vw, 0.5rem);
-    }
-    
-    .team-display h2 {
-        font-size: clamp(0.75rem, 3.5vw, 1.1rem);
-        margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
-    }
-    
-    .score {
-        font-size: clamp(2rem, 8vw, 3.5rem);
-        margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
-    }
-    
-    .errors {
-        gap: clamp(0.2rem, 1vw, 0.4rem);
-    }
-    
-    .error-x {
-        font-size: clamp(1rem, 4vw, 1.5rem);
+        padding: clamp(0.2rem, 0.8vw, 0.4rem);
+        overflow: hidden;
+        justify-self: center;
+        align-self: center;
     }
     
     .logo-section {
         padding-top: clamp(0.2rem, 0.5vh, 0.4rem);
         padding-bottom: clamp(0.3rem, 1vh, 0.6rem);
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .team-display h2 {
+        font-size: clamp(0.6rem, 2.5vw, 0.9rem);
+        margin-bottom: clamp(0.15rem, 0.3vh, 0.3rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .score {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        margin-bottom: clamp(0.15rem, 0.3vh, 0.3rem);
+    }
+    
+    .errors {
+        gap: clamp(0.15rem, 0.8vw, 0.3rem);
+        flex-wrap: nowrap;
+    }
+    
+    .error-x {
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
     }
     
     .round-points-container {
@@ -571,129 +689,178 @@ body {
     }
     
     .multiplier-display {
-        font-size: clamp(0.75rem, 3vw, 1rem);
-        padding: clamp(0.2rem, 1vw, 0.4rem) clamp(0.4rem, 2vw, 0.8rem);
-        bottom: -8%;
+        font-size: clamp(0.5rem, 2.5vw, 0.7rem);
+        padding: clamp(0.1rem, 0vw, 0.3rem) clamp(0.2rem, 1.5vw, 0.5rem);
+        bottom: 0%;
         left: 50%;
         transform: translateX(-50%);
+        max-width: clamp(30px, 12vw, 70px);
+        min-width: clamp(25px, 8vw, 30px);
+    }
+    
+    /* Hacer elementos de logoSection más pequeños en tablets/móviles */
+    .logo-section {
+        padding-top: clamp(0.1rem, 0.3vh, 0.2rem);
+        padding-bottom: clamp(0.3rem, 0.8vh, 0.5rem);
+    }
+    
+    .round-points-container {
+        margin-top: clamp(0.3rem, 1.5vh, 0.6rem);
+    }
+    
+    .round-points-label {
+        font-size: clamp(0.45rem, 1.8vw, 0.7rem);
+        margin-bottom: clamp(0.05rem, 0.2vh, 0.1rem);
+        letter-spacing: clamp(0.3px, 0.05vw, 0.8px);
+    }
+    
+    .round-points {
+        font-size: clamp(0.9rem, 3vw, 1.6rem);
+        padding: clamp(0.15rem, 0.4vh, 0.3rem) clamp(0.3rem, 1.5vw, 0.6rem);
+        min-width: clamp(45px, 10vw, 90px);
+        border-width: clamp(1px, 0.2vw, 2px);
     }
 }
 
 @media (max-width: 480px) {
-    /* Ajustes para móviles pequeños (370x630) */
+    /* Ajustes para móviles pequeños - MANTENER 3 COLUMNAS */
     .board-container {
-        padding: var(--space-xs);
-        gap: var(--space-xs);
+        padding: clamp(0.15rem, 0.5vw, 0.3rem);
+        gap: clamp(0.15rem, 0.3vh, 0.3rem);
     }
     
+    /* MANTENER 3 COLUMNAS incluso en móviles pequeños */
     .board-header {
         height: auto;
         min-height: auto;
         max-height: none;
-        grid-template-columns: 1fr;
-        padding: var(--space-xs);
-        gap: var(--space-xs);
-        margin-bottom: var(--space-xs);
+        grid-template-columns: 0.8fr 3fr 0.8fr; /* logoSection aún más grande en móviles */
+        padding: clamp(0.15rem, 0.5vw, 0.3rem);
+        gap: clamp(0.15rem, 0.3vw, 0.25rem);
+        margin-bottom: clamp(0.15rem, 0.3vh, 0.3rem);
     }
     
     .team-display {
-        padding: var(--space-xs);
+        padding: clamp(0.15rem, 0.5vw, 0.3rem);
+        overflow: hidden;
     }
     
     .team-display h2 {
-        font-size: clamp(0.8rem, 3.5vw, 1.2rem);
-        margin-bottom: var(--space-xs);
+        font-size: clamp(0.5rem, 2vw, 0.75rem);
+        margin-bottom: clamp(0.1rem, 0.2vh, 0.2rem);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .score {
-        font-size: clamp(2rem, 8vw, 3rem);
-        margin-bottom: var(--space-xs);
+        font-size: clamp(1.2rem, 5vw, 2rem);
+        margin-bottom: clamp(0.1rem, 0.2vh, 0.2rem);
     }
     
     .errors {
-        gap: var(--space-xs);
+        gap: clamp(0.1rem, 0.5vw, 0.2rem);
+        flex-wrap: nowrap;
     }
     
     .error-x {
-        font-size: clamp(1rem, 4vw, 1.5rem);
+        font-size: clamp(0.6rem, 2.5vw, 1rem);
     }
     
     .logo-section {
-        padding-top: var(--space-xs);
-        padding-bottom: var(--space-sm);
+        padding-top: clamp(0.1rem, 0.3vh, 0.2rem);
+        padding-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
     }
     
     .round-points-container {
-        margin-top: var(--space-sm);
+        margin-top: clamp(0.2rem, 1vh, 0.4rem);
     }
     
     .round-points-label {
-        font-size: clamp(0.65rem, 2.5vw, 0.9rem);
+        font-size: clamp(0.4rem, 1.5vw, 0.6rem);
+        margin-bottom: clamp(0.05rem, 0.15vh, 0.08rem);
+        letter-spacing: clamp(0.2px, 0.03vw, 0.5px);
     }
     
     .round-points {
-        font-size: clamp(1.2rem, 5vw, 2rem);
-        padding: var(--space-xs) var(--space-sm);
-        min-width: clamp(60px, 20vw, 120px);
+        font-size: clamp(0.7rem, 3.5vw, 1.3rem);
+        padding: clamp(0.1rem, 0.3vh, 0.25rem) clamp(0.2rem, 1.2vw, 0.5rem);
+        min-width: clamp(40px, 12vw, 75px);
+        border-width: clamp(1px, 0.15vw, 1.5px);
+    }
+    
+    .multiplier-display {
+        font-size: clamp(0.45rem, 2vw, 0.75rem);
+        padding: clamp(0.08rem, 0.6vw, 0.25rem) clamp(0.15rem, 1.2vw, 0.4rem);
+        bottom: 0%;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: clamp(25px, 10vw, 60px);
+        min-width: clamp(20px, 7vw, 40px);
     }
     
     .question-display {
         height: auto;
         max-height: none;
         min-height: auto;
-        margin-bottom: var(--space-xs);
+        margin-bottom: clamp(0.15rem, 0.3vh, 0.3rem);
     }
     
     .question-box {
-        padding: var(--space-xs);
-        min-height: 50px;
+        padding: clamp(0.2rem, 0.8vw, 0.4rem);
+        min-height: clamp(35px, 6vh, 50px);
     }
     
     .question-box h2 {
-        font-size: clamp(0.75rem, 3.5vw, 1.5rem);
-        line-height: 1.15;
+        font-size: clamp(0.6rem, 3vw, 1.2rem);
+        line-height: 1.1;
     }
     
     .answers-board {
-        padding: var(--space-xs);
+        padding: clamp(0.15rem, 0.5vw, 0.3rem);
         max-height: none;
     }
     
     .answers-grid {
         grid-template-columns: 1fr;
-        gap: clamp(0.4rem, 1vh, 0.8rem);
+        gap: clamp(0.3rem, 0.8vh, 0.6rem);
         padding: 0;
     }
     
     .answer-card {
-        grid-template-columns: minmax(35px, 12vw) 1fr minmax(45px, 14vw);
-        padding: var(--space-xs) var(--space-sm);
+        grid-template-columns: minmax(30px, 10vw) 1fr minmax(40px, 12vw);
+        padding: clamp(0.2rem, 1vw, 0.4rem) clamp(0.3rem, 1.5vw, 0.6rem);
         height: auto;
-        min-height: clamp(45px, 8vh, 70px);
+        min-height: clamp(40px, 7vh, 60px);
         max-height: none;
-        gap: var(--space-xs);
+        gap: clamp(0.2rem, 1vw, 0.4rem);
     }
     
     .answer-number {
-        font-size: clamp(1.2rem, 5vw, 2rem);
-        padding: var(--space-xs);
+        font-size: clamp(1rem, 4vw, 1.6rem);
+        padding: clamp(0.15rem, 0.8vw, 0.3rem);
     }
     
     .answer-text {
-        font-size: clamp(0.7rem, 3.2vw, 1.2rem);
-        padding: 0 var(--space-xs);
+        font-size: clamp(0.6rem, 2.8vw, 1rem);
+        padding: 0 clamp(0.15rem, 0.8vw, 0.3rem);
         line-height: 1.1;
     }
     
     .answer-points {
-        font-size: clamp(1.2rem, 5vw, 2rem);
-        padding: var(--space-xs);
+        font-size: clamp(1rem, 4vw, 1.6rem);
+        padding: clamp(0.15rem, 0.8vw, 0.3rem);
     }
     
     .multiplier-display {
-        font-size: clamp(0.75rem, 3vw, 1rem);
-        padding: var(--space-xs) var(--space-sm);
-        bottom: -10%;
+        font-size: clamp(0.5rem, 1.2vw, 0.8rem);
+        padding: clamp(0.1rem, 0.6vw, 0.25rem) clamp(0.25rem, 1.2vw, 0.5rem);
+        bottom: -3%;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: clamp(28px, 11vw, 60px);
+        min-width: clamp(22px, 5vw, 40px);
+        margin-bottom: -1%;
     }
 }
 
