@@ -1023,3 +1023,11 @@ body {
     }
 }
 
+/* Para pantallas mayores a 1200px, limitar tamaño de h2 */
+@media (min-width: 1200px) {
+    h2 {
+        font-size: 2.8rem !important;
+        max-font-size: 2.8rem;
+    }
+}
+
