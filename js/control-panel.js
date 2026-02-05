@@ -472,6 +472,7 @@ function playSound(type) {
         start: 'res/audio/start.mp3',
         correct: 'res/audio/correct.mp3',
         wrong: 'res/audio/wrong.mp3',
+        repeated: 'res/audio/repeated.mp3',
         win: 'res/audio/win.mp3',
         timer: 'res/audio/timer.mp3',
         load: 'res/audio/load.mp3'
